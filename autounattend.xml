@@ -443,8 +443,13 @@ $params = @{
 	Type = 'String';
 	Force = $true;
 };
+$paramsDWORD = @{
+	LiteralPath = 'Registry::HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings';
+	Type = 'DWORD';
+	Force = $true;
+};
 
-New-ItemProperty -Path $settingsPath -Name 'FlightSettingsMaxPauseDays' -Value 0x00001c84 -PropertyType DWORD -Force
+New-ItemProperty -Path @paramsDWORD -Name 'FlightSettingsMaxPauseDays' -Value 0x00001c84;
 Set-ItemProperty @params -Name 'PauseFeatureUpdatesStartTime' -Value $start;
 Set-ItemProperty @params -Name 'PauseFeatureUpdatesEndTime' -Value $end;
 Set-ItemProperty @params -Name 'PauseQualityUpdatesStartTime' -Value $start;
